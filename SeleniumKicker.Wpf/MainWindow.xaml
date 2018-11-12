@@ -1,0 +1,35 @@
+﻿<Window x:Name="Selenium_Kicker" x:Class="SeleniumKicker.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SeleniumKicker.Wpf"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Selenium Kicker" Height="445.757" Width="755" ResizeMode="CanResizeWithGrip" Closing="Selenium_Kicker_Closing" >
+  <Grid>
+
+    <TabControl Name="SeleniumTabs" Margin="10,38,10,10" Grid.ColumnSpan="2" Visibility="Visible" >
+    </TabControl>
+    <CheckBox Content="Auto Clear" HorizontalAlignment="Right" Margin="0,38,10,0" VerticalAlignment="Top" FlowDirection="RightToLeft" Visibility="Hidden"/>
+
+
+    <xctk:WatermarkTextBox Name="UserTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193" Watermark="{Binding ElementName=Selenium_Kicker, Path=CurrentUsername, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" />
+    <Button Name="SetUserButton" Content="Set User" Margin="208,10,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FFABADB3" Height="23" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="75" Click="SetUserClick"/>
+    <Button Name="StartButton" Content="Start" Margin="299,10,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FFABADB3" Height="23" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="75" Click="StartClick"/>
+    <Button Name="RestartAllButton" Content="Restart All" Margin="379,10,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FFABADB3" Height="23" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="75" Visibility="Hidden" Click="RestartAllClick"/>
+    <Button Name="RestartNodesButton" Content="Restart Nodes" Margin="459,10,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FFABADB3" Height="23" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="86" Visibility="Hidden" Click="RestartNodesClick"/>
+
+    <Expander Name="OptionsExpander" Header="Options" HorizontalAlignment="Right" Height="23" Margin="0,10,10,0" VerticalAlignment="Top" Width="143" FlowDirection="RightToLeft" Expanded="Expander_Expanded" Collapsed="Expander_Collapsed">
+      <Border BorderBrush="#FFABADB3" BorderThickness="1" Margin="0,5,0,0" >
+        <Grid Background="#FFFFFF" FlowDirection="LeftToRight" >
+          <xctk:WatermarkTextBox Name="UsernameTextBox" Watermark="Username" Height="23" Margin="0,10,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" />
+          <xctk:WatermarkPasswordBox Name="PasswordTextBox" Watermark="Password" Height="23" Margin="0,38,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" />
+          <Button Name="AddUserButton" Content="Add User" Margin="0,66,10,0" VerticalAlignment="Top" Background="White" BorderBrush="#FFABADB3" Height="23" ToolTip="Adds a user to Windows Credential Store to allow running as other users dynamically" VerticalContentAlignment="Center" Click="AddUserButton_OnClickUserClick" HorizontalAlignment="Right" Width="75"/>
+
+        </Grid>
+      </Border>
+    </Expander>
+    
+  </Grid>
+</Window>
