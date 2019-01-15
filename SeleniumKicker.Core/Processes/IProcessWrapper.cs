@@ -9,11 +9,11 @@ namespace SeleniumKicker.Core.Processes
     bool Start();
     void BeginOutputReadLine();
     void BeginErrorReadLine();
-    void Kill();
     event DataReceivedEventHandler OutputDataReceived;
     event DataReceivedEventHandler ErrorDataReceived;
     Process[] GetProcessesByNameWrapper(string processName);
     bool EnableRaisingEvents { get; set; }
     string GetProcessUser();
+    void KillParentAndChildren();
   }
 }

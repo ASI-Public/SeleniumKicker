@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
 
 namespace SeleniumKicker.Core.Processes
 {
@@ -15,6 +13,7 @@ namespace SeleniumKicker.Core.Processes
 
     public string Start<T>(string username) where T : IProcessWrapper
     {
+      var x = typeof(T);
       Process = Activator.CreateInstance<T>();
       Process.StartInfo = new ProcessStartInfo()
       {
@@ -42,13 +41,15 @@ namespace SeleniumKicker.Core.Processes
       Process.BeginOutputReadLine();
       Process.BeginErrorReadLine();
 
+      var proc = new Process();
+      
       return Process.GetProcessUser();
     }
     
 
     public virtual void Stop()
     {
-      Process.Kill();
+      Process.KillParentAndChildren();
     }
 
     public event DataReceivedEventHandler OutputDataReceived

@@ -17,11 +17,14 @@ namespace SeleniumKicker.Core.Processes
     public void BeginErrorReadLine()
     { }
 
-    public void Kill()
+    public void KillParentAndChildren()
     { }
 
+#pragma warning disable 67
     public event DataReceivedEventHandler OutputDataReceived;
     public event DataReceivedEventHandler ErrorDataReceived;
+#pragma warning restore 67
+
     public Process[] GetProcessesByNameWrapper(string processName)
     {
       return new Process[0];

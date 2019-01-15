@@ -30,6 +30,7 @@ namespace SeleniumKicker.Wpf
 
     public MainWindow()
     {
+      var x = Environment.GetCommandLineArgs();
       InitializeComponent();
       _commands = new HubCommands(SeleniumTabs);
       CurrentUsername = $"{Environment.UserDomainName}\\{Environment.UserName}";

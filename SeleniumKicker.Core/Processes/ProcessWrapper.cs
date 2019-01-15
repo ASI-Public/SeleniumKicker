@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Management;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 
 namespace SeleniumKicker.Core.Processes
 {
-  public abstract class ProcessWrapper : Process, IProcessWrapper
+  public class ProcessWrapper : Process, IProcessWrapper
   {
     public Process[] GetProcessesByNameWrapper(string processName)
     {
@@ -32,6 +34,25 @@ namespace SeleniumKicker.Core.Processes
           CloseHandle(processHandle);
         }
       }
+    }
+     public void KillParentAndChildren()
+    {
+      var children = new List<Process>();
+      using (var mos = new ManagementObjectSearcher(
+        $"Select * From Win32_Process Where ParentProcessID={Id}"))
+      {
+        foreach (var mo in mos.Get())
+        {
+          children.Add(GetProcessById(Convert.ToInt32(mo["ProcessID"])));
+        }
+      }
+
+      foreach (var child in children)
+      {
+        child.Kill();
+      }
+
+      Kill();
     }
 
     // ReSharper disable once StringLiteralTypo
